@@ -20,16 +20,11 @@ public class ElasticSearchClient
         this.client = new RestHighLevelClient(
                 RestClient.builder(new HttpHost("localhost", 9200, "http")));
 
-
-
-
-
-
     }
 
     public String insert(Map jsonMap, String indexName, String indexMapping) throws IOException
     {
-        IndexRequest indexRequest = new IndexRequest("twitter").source(jsonMap);
+        IndexRequest indexRequest = new IndexRequest(indexName).source(jsonMap);
         RequestOptions options;
 
         IndexResponse response = client.index(indexRequest, RequestOptions.DEFAULT);
