@@ -23,6 +23,10 @@ public class MainAppESClient
         {
             String message = "";
         }
+        finally
+        {
+            client.Close();
+        }
         System.out.println("exiting app");
 
 

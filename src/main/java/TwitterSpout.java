@@ -21,6 +21,7 @@ public class TwitterSpout extends BaseRichSpout
     private TwitterStream twitterStream;
 
     private SpoutOutputCollector collector;
+
     public void open(Map conf, TopologyContext context,SpoutOutputCollector collector)
     {
 
@@ -77,13 +78,13 @@ public class TwitterSpout extends BaseRichSpout
         if (status == null) {
             Utils.sleep(50);
         } else {
-            collector.emit(new Values(status.getText(), status.getUser(), status.getCreatedAt(), status.getRetweetCount()));
+            collector.emit(new Values(status));
         }
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer)
     {
-        declarer.declare(new Fields("tweet", "user", "createdat","retweetcount"));
+        declarer.declare(new Fields("tweet"));
     }
 
     public void close()
